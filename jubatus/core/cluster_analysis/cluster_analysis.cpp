@@ -52,31 +52,31 @@ bool is_same_datum(
 }
 
 double accumulate_weight(
-    const std::vector<std::pair<double, fv_converter::datum> >& set) {
+    const cluster_unit& cluster) {
   double sum = 0;
-  for (size_t i = 0; i < set.size(); ++i) {
-    sum += set[i].first;
+  for (size_t i = 0; i < cluster.size(); ++i) {
+    sum += cluster[i].first;
   }
   return sum;
 }
 
 double compute_jaccard_coefficient(
-    const std::vector<std::pair<double, fv_converter::datum> >& set1,
-    const std::vector<std::pair<double, fv_converter::datum> >& set2) {
-  if (set1.empty() || set2.empty()) {
+    const cluster_unit& cluster1,
+    const cluster_unit& cluster2) {
+  if (cluster1.empty() || cluster2.empty()) {
     return 0;
   }
   double intersec = 0;
-  for (size_t i = 0; i < set1.size(); ++i) {
-    for (size_t j = 0; j < set2.size(); ++j) {
-      if (is_same_datum(set1[i].second, set2[j].second)) {
-        intersec += std::min(set1[i].first, set2[j].first);
+  for (size_t i = 0; i < cluster1.size(); ++i) {
+    for (size_t j = 0; j < cluster2.size(); ++j) {
+      if (is_same_datum(cluster1[i].second, cluster2[j].second)) {
+        intersec += std::min(cluster1[i].first, cluster2[j].first);
         break;
       }
     }
   }
   const double union_weight =
-      accumulate_weight(set1) + accumulate_weight(set2) - intersec;
+      accumulate_weight(cluster1) + accumulate_weight(cluster2) - intersec;
   return intersec / union_weight;
 }
 
@@ -111,8 +111,8 @@ void convert(clustering::datum& src, fv_converter::datum& dst) {
 }
 
 void convert(
-    std::vector<std::vector<std::pair<double, clustering::datum> > >& src,
-    std::vector<std::vector<std::pair<double, fv_converter::datum> > >& dst) {
+    std::vector<std::vector<std::pair<cluster_weight, clustering::datum> > >& src,
+    cluster_set& dst) {
   dst.resize(src.size());
   for (size_t i = 0; i < src.size(); ++i) {
     dst[i].resize(src[i].size());
@@ -137,7 +137,7 @@ void cluster_analysis::add_snapshot(const string& clustering_name) {
   clustering_snapshot snapshot;
   snapshot.name = clustering_name;
 
-  std::vector<std::vector<std::pair<double, clustering::datum> > > ret =
+  std::vector<std::vector<std::pair<cluster_weight, clustering::datum> > > ret =
       client_.get_core_members(config_.name);
 
   convert(ret, snapshot.clusters);

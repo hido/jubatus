@@ -31,9 +31,10 @@ struct cluster_analysis_config {
   double timeout_sec;
   int num_snapshots;
 
-  template<typename Ar>
+  template <typename Ar>
   void serialize(Ar& ar) {
-    ar & MEMBER(name)
+    ar 
+        & MEMBER(name)
         & MEMBER(host)
         & MEMBER(port)
         & MEMBER(timeout_sec)
