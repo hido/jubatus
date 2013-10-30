@@ -31,6 +31,12 @@
 namespace jubatus {
 namespace core {
 namespace clustering {
+
+typedef double cluster_weight;
+typedef std::vector<std::pair<cluster_weight,
+            jubatus::core::fv_converter::datum> > cluster_unit;
+typedef std::vector<cluster_unit> cluster_set;
+
 struct weighted_point {
  public:
   MSGPACK_DEFINE(weight, data, original, free_double, free_long);
