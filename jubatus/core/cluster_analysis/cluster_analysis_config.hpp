@@ -33,7 +33,7 @@ struct cluster_analysis_config {
 
   template <typename Ar>
   void serialize(Ar& ar) {
-    ar 
+    ar
         & MEMBER(name)
         & MEMBER(host)
         & MEMBER(port)

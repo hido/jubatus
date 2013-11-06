@@ -110,9 +110,8 @@ void convert(clustering::datum& src, fv_converter::datum& dst) {
   src.num_values.swap(dst.num_values_);
 }
 
-void convert(
-    std::vector<std::vector<std::pair<cluster_weight, clustering::datum> > >& src,
-    cluster_set& dst) {
+void convert(std::vector<std::vector<std::pair<cluster_weight,
+                 clustering::datum> > >& src, cluster_set& dst) {
   dst.resize(src.size());
   for (size_t i = 0; i < src.size(); ++i) {
     dst[i].resize(src[i].size());
@@ -137,10 +136,9 @@ void cluster_analysis::add_snapshot(const string& clustering_name) {
   clustering_snapshot snapshot;
   snapshot.name = clustering_name;
 
-  std::vector<std::vector<std::pair<cluster_weight, clustering::datum> > > ret =
-      client_.get_core_members(config_.name);
+  std::vector<std::vector<std::pair<cluster_weight,
+        clustering::datum> > > ret = client_.get_core_members(config_.name);
 
-  convert(ret, snapshot.clusters);
   if (snapshots_.size() == static_cast<size_t>(config_.num_snapshots)) {
     snapshots_.pop_front();
   }
