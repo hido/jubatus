@@ -1,4 +1,4 @@
-// This file is auto-generated from cluster_analysis.idl(0.4.5-347-gbd3e713) with jenerator version 0.4.5-267-g5536bc5/feature/coreset
+// This file is auto-generated from cluster_analysis.idl(0.4.5-349-g996d101) with jenerator version 0.4.5-349-g996d101/develop_temp_coreset_merged
 // *** DO NOT EDIT ***
 
 #include <map>
@@ -21,16 +21,13 @@ class cluster_analysis_impl : public jubatus::server::common::mprpc::rpc_server 
     p_(new jubatus::server::framework::server_helper<cluster_analysis_serv>(a,
         false)) {
 
-    rpc_server::add<std::string(std::string, std::string)>("get_config",
-        pfi::lang::bind(&cluster_analysis_impl::get_config, this,
-        pfi::lang::_2));
-    rpc_server::add<bool(std::string, std::string, std::string)>("add_snapshot",
+    rpc_server::add<bool(std::string, std::string)>("add_snapshot",
         pfi::lang::bind(&cluster_analysis_impl::add_snapshot, this,
-        pfi::lang::_2, pfi::lang::_3));
+        pfi::lang::_2));
     rpc_server::add<std::vector<jubatus::core::cluster_analysis::change_graph>(
-        std::string, std::string)>("get_history", pfi::lang::bind(
-        &cluster_analysis_impl::get_history, this, pfi::lang::_2));
-    rpc_server::add<std::vector<jubatus::core::cluster_analysis::clustering_snapshot>(std::string, std::string)>("get_snapshots", pfi::lang::bind(&cluster_analysis_impl::get_snapshots, this, pfi::lang::_2));
+        std::string)>("get_history", pfi::lang::bind(
+        &cluster_analysis_impl::get_history, this));
+    rpc_server::add<std::vector<jubatus::core::cluster_analysis::clustering_snapshot>(std::string)>("get_snapshots", pfi::lang::bind(&cluster_analysis_impl::get_snapshots, this));
 
     rpc_server::add<std::string(std::string)>("get_config", pfi::lang::bind(
         &cluster_analysis_impl::get_config, this));
@@ -43,26 +40,19 @@ class cluster_analysis_impl : public jubatus::server::common::mprpc::rpc_server 
         &cluster_analysis_impl::get_status, this));
   }
 
-  std::string get_config(const std::string& name) {
-    JRLOCK_(p_);
-    return get_p()->get_config(name);
-  }
-
-  bool add_snapshot(const std::string& name,
-      const std::string& clustering_name) {
+  bool add_snapshot(const std::string& clustering_name) {
     JWLOCK_(p_);
-    return get_p()->add_snapshot(name, clustering_name);
+    return get_p()->add_snapshot(clustering_name);
   }
 
-  std::vector<jubatus::core::cluster_analysis::change_graph> get_history(
-      const std::string& name) {
+  std::vector<jubatus::core::cluster_analysis::change_graph> get_history() {
     JRLOCK_(p_);
-    return get_p()->get_history(name);
+    return get_p()->get_history();
   }
 
-  std::vector<jubatus::core::cluster_analysis::clustering_snapshot> get_snapshots(const std::string& name) {
+  std::vector<jubatus::core::cluster_analysis::clustering_snapshot> get_snapshots() {
     JRLOCK_(p_);
-    return get_p()->get_snapshots(name);
+    return get_p()->get_snapshots();
   }
 
   std::string get_config() {

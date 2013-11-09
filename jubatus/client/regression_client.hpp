@@ -1,4 +1,4 @@
-// This file is auto-generated from regression.idl(0.4.3-191-gd1afc2f) with jenerator version 0.4.5-267-g5536bc5/feature/coreset
+// This file is auto-generated from regression.idl(0.4.5-349-g996d101) with jenerator version 0.4.5-349-g996d101/develop_temp_coreset_merged
 // *** DO NOT EDIT ***
 
 #ifndef JUBATUS_CLIENT_REGRESSION_CLIENT_HPP_

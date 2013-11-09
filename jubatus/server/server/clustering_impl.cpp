@@ -1,4 +1,4 @@
-// This file is auto-generated from clustering.idl(0.4.5-347-gbd3e713) with jenerator version 0.4.5-267-g5536bc5/feature/coreset
+// This file is auto-generated from clustering.idl(0.4.5-349-g996d101) with jenerator version 0.4.5-349-g996d101/develop_temp_coreset_merged
 // *** DO NOT EDIT ***
 
 #include <map>
@@ -20,37 +20,27 @@ class clustering_impl : public jubatus::server::common::mprpc::rpc_server {
     p_(new jubatus::server::framework::server_helper<clustering_serv>(a,
         false)) {
 
-    rpc_server::add<std::string(std::string, std::string)>("get_config",
-        pfi::lang::bind(&clustering_impl::get_config, this, pfi::lang::_2));
-    rpc_server::add<bool(std::string, std::string,
+    rpc_server::add<bool(std::string,
         std::vector<jubatus::core::fv_converter::datum>)>("push",
-        pfi::lang::bind(&clustering_impl::push, this, pfi::lang::_2,
-        pfi::lang::_3));
-    rpc_server::add<uint32_t(std::string, std::string)>("get_revision",
-        pfi::lang::bind(&clustering_impl::get_revision, this, pfi::lang::_2));
-    rpc_server::add<std::vector<std::vector<cluster_datum> >(std::string,
-        std::string)>("get_core_members", pfi::lang::bind(
-        &clustering_impl::get_core_members, this, pfi::lang::_2));
-    rpc_server::add<std::vector<jubatus::core::fv_converter::datum>(std::string,
+        pfi::lang::bind(&clustering_impl::push, this, pfi::lang::_2));
+    rpc_server::add<uint32_t(std::string)>("get_revision", pfi::lang::bind(
+        &clustering_impl::get_revision, this));
+    rpc_server::add<std::vector<std::vector<std::pair<double,
+        jubatus::core::fv_converter::datum> > >(std::string)>(
+        "get_core_members", pfi::lang::bind(&clustering_impl::get_core_members,
+        this));
+    rpc_server::add<std::vector<jubatus::core::fv_converter::datum>(
         std::string)>("get_k_center", pfi::lang::bind(
-        &clustering_impl::get_k_center, this, pfi::lang::_2));
-    rpc_server::add<jubatus::core::fv_converter::datum(std::string, std::string,
+        &clustering_impl::get_k_center, this));
+    rpc_server::add<jubatus::core::fv_converter::datum(std::string,
         jubatus::core::fv_converter::datum)>("get_nearest_center",
         pfi::lang::bind(&clustering_impl::get_nearest_center, this,
-        pfi::lang::_2, pfi::lang::_3));
-    rpc_server::add<std::vector<cluster_datum>(std::string, std::string,
+        pfi::lang::_2));
+    rpc_server::add<std::vector<std::pair<double,
+        jubatus::core::fv_converter::datum> >(std::string,
         jubatus::core::fv_converter::datum)>("get_nearest_members",
         pfi::lang::bind(&clustering_impl::get_nearest_members, this,
-        pfi::lang::_2, pfi::lang::_3));
-    rpc_server::add<bool(std::string, std::string, std::string)>("save",
-        pfi::lang::bind(&clustering_impl::save, this, pfi::lang::_2,
-        pfi::lang::_3));
-    rpc_server::add<bool(std::string, std::string, std::string)>("load",
-        pfi::lang::bind(&clustering_impl::load, this, pfi::lang::_2,
-        pfi::lang::_3));
-    rpc_server::add<std::map<std::string, std::map<std::string, std::string> >(
-        std::string, std::string)>("get_status", pfi::lang::bind(
-        &clustering_impl::get_status, this, pfi::lang::_2));
+        pfi::lang::_2));
 
     rpc_server::add<std::string(std::string)>("get_config", pfi::lang::bind(
         &clustering_impl::get_config, this));
@@ -63,60 +53,38 @@ class clustering_impl : public jubatus::server::common::mprpc::rpc_server {
         &clustering_impl::get_status, this));
   }
 
-  std::string get_config(const std::string& name) {
-    JRLOCK_(p_);
-    return get_p()->get_config(name);
-  }
-
-  bool push(const std::string& name,
-      const std::vector<jubatus::core::fv_converter::datum>& points) {
+  bool push(const std::vector<jubatus::core::fv_converter::datum>& points) {
     JWLOCK_(p_);
-    return get_p()->push(name, points);
+    return get_p()->push(points);
   }
 
-  uint32_t get_revision(const std::string& name) {
+  uint32_t get_revision() {
     JRLOCK_(p_);
-    return get_p()->get_revision(name);
+    return get_p()->get_revision();
   }
 
-  std::vector<std::vector<cluster_datum> > get_core_members(
-      const std::string& name) {
+  std::vector<std::vector<std::pair<double,
+      jubatus::core::fv_converter::datum> > > get_core_members() {
     JRLOCK_(p_);
-    return get_p()->get_core_members(name);
+    return get_p()->get_core_members();
   }
 
-  std::vector<jubatus::core::fv_converter::datum> get_k_center(
-      const std::string& name) {
+  std::vector<jubatus::core::fv_converter::datum> get_k_center() {
     JRLOCK_(p_);
-    return get_p()->get_k_center(name);
+    return get_p()->get_k_center();
   }
 
-  jubatus::core::fv_converter::datum get_nearest_center(const std::string& name,
+  jubatus::core::fv_converter::datum get_nearest_center(
       const jubatus::core::fv_converter::datum& point) {
     JRLOCK_(p_);
-    return get_p()->get_nearest_center(name, point);
+    return get_p()->get_nearest_center(point);
   }
 
-  std::vector<cluster_datum> get_nearest_members(const std::string& name,
+  std::vector<std::pair<double,
+      jubatus::core::fv_converter::datum> > get_nearest_members(
       const jubatus::core::fv_converter::datum& point) {
     JRLOCK_(p_);
-    return get_p()->get_nearest_members(name, point);
-  }
-
-  bool save(const std::string& name, const std::string& id) {
-    JWLOCK_(p_);
-    return get_p()->save(name, id);
-  }
-
-  bool load(const std::string& name, const std::string& id) {
-    JWLOCK_(p_);
-    return get_p()->load(name, id);
-  }
-
-  std::map<std::string, std::map<std::string, std::string> > get_status(
-      const std::string& name) {
-    JRLOCK_(p_);
-    return get_p()->get_status(name);
+    return get_p()->get_nearest_members(point);
   }
 
   std::string get_config() {

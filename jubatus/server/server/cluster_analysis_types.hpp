@@ -1,4 +1,4 @@
-// This file is auto-generated from cluster_analysis.idl(0.4.5-347-gbd3e713) with jenerator version 0.4.5-267-g5536bc5/feature/coreset
+// This file is auto-generated from cluster_analysis.idl(0.4.5-349-g996d101) with jenerator version 0.4.5-349-g996d101/develop_temp_coreset_merged
 // *** DO NOT EDIT ***
 
 #ifndef JUBATUS_SERVER_SERVER_CLUSTER_ANALYSIS_TYPES_HPP_
@@ -18,18 +18,6 @@
 #include "../../core/cluster_analysis/cluster_analysis_types.hpp"
 
 namespace jubatus {
-
-struct cluster_datum {
- public:
-  MSGPACK_DEFINE(weight, data);
-  double weight;
-  jubatus::core::fv_converter::datum data;
-  cluster_datum() {
-  }
-  cluster_datum(double weight, const jubatus::core::fv_converter::datum& data)
-    : weight(weight), data(data) {
-  }
-};
 
 }  // namespace jubatus
 

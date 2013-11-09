@@ -1,4 +1,4 @@
-// This file is auto-generated from cluster_analysis.idl(0.4.5-347-gbd3e713) with jenerator version 0.4.5-267-g5536bc5/feature/coreset
+// This file is auto-generated from cluster_analysis.idl(0.4.5-349-g996d101) with jenerator version 0.4.5-349-g996d101/develop_temp_coreset_merged
 // *** DO NOT EDIT ***
 
 #ifndef JUBATUS_CLIENT_CLUSTER_ANALYSIS_CLIENT_HPP_
@@ -22,25 +22,18 @@ class cluster_analysis : public jubatus::client::common::client {
       : client(host, port, name, timeout_sec) {
   }
 
-  std::string get_config(const std::string& name) {
-    msgpack::rpc::future f = c_.call("get_config", name_, name);
-    return f.get<std::string>();
-  }
-
-  bool add_snapshot(const std::string& name,
-      const std::string& clustering_name) {
-    msgpack::rpc::future f = c_.call("add_snapshot", name_, name,
-        clustering_name);
+  bool add_snapshot(const std::string& clustering_name) {
+    msgpack::rpc::future f = c_.call("add_snapshot", name_, clustering_name);
     return f.get<bool>();
   }
 
-  std::vector<change_graph> get_history(const std::string& name) {
-    msgpack::rpc::future f = c_.call("get_history", name_, name);
+  std::vector<change_graph> get_history() {
+    msgpack::rpc::future f = c_.call("get_history", name_);
     return f.get<std::vector<change_graph> >();
   }
 
-  std::vector<clustering_snapshot> get_snapshots(const std::string& name) {
-    msgpack::rpc::future f = c_.call("get_snapshots", name_, name);
+  std::vector<clustering_snapshot> get_snapshots() {
+    msgpack::rpc::future f = c_.call("get_snapshots", name_);
     return f.get<std::vector<clustering_snapshot> >();
   }
 };

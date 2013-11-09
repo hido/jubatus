@@ -1,4 +1,4 @@
-// This file is auto-generated from nearest_neighbor.idl(0.4.5-212-ge1d753d) with jenerator version 0.4.5-267-g5536bc5/feature/coreset
+// This file is auto-generated from nearest_neighbor.idl(0.4.5-349-g996d101) with jenerator version 0.4.5-349-g996d101/develop_temp_coreset_merged
 // *** DO NOT EDIT ***
 
 #include <map>
