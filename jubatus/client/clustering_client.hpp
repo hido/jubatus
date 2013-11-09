@@ -1,4 +1,4 @@
-// This file is auto-generated from clustering.idl(0.4.5-349-g996d101) with jenerator version 0.4.5-349-g996d101/develop_temp_coreset_merged
+// This file is auto-generated from clustering.idl(0.4.5-350-g478e20e) with jenerator version 0.4.5-349-g996d101/develop_temp_coreset_merged
 // *** DO NOT EDIT ***
 
 #ifndef JUBATUS_CLIENT_CLUSTERING_CLIENT_HPP_
@@ -32,9 +32,9 @@ class clustering : public jubatus::client::common::client {
     return f.get<uint32_t>();
   }
 
-  std::vector<std::vector<cluster_datum> > get_core_members() {
+  std::vector<std::vector<weighted_datum> > get_core_members() {
     msgpack::rpc::future f = c_.call("get_core_members", name_);
-    return f.get<std::vector<std::vector<cluster_datum> > >();
+    return f.get<std::vector<std::vector<weighted_datum> > >();
   }
 
   std::vector<jubatus::client::common::datum> get_k_center() {
@@ -48,10 +48,10 @@ class clustering : public jubatus::client::common::client {
     return f.get<jubatus::client::common::datum>();
   }
 
-  std::vector<cluster_datum> get_nearest_members(
+  std::vector<weighted_datum> get_nearest_members(
       const jubatus::client::common::datum& point) {
     msgpack::rpc::future f = c_.call("get_nearest_members", name_, point);
-    return f.get<std::vector<cluster_datum> >();
+    return f.get<std::vector<weighted_datum> >();
   }
 };
 

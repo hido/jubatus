@@ -1,4 +1,4 @@
-// This file is auto-generated from clustering.idl(0.4.5-349-g996d101) with jenerator version 0.4.5-349-g996d101/develop_temp_coreset_merged
+// This file is auto-generated from clustering.idl(0.4.5-350-g478e20e) with jenerator version 0.4.5-349-g996d101/develop_temp_coreset_merged
 // *** DO NOT EDIT ***
 
 #ifndef JUBATUS_CLIENT_CLUSTERING_TYPES_HPP_
@@ -17,15 +17,15 @@
 namespace jubatus {
 namespace clustering {
 
-struct cluster_datum {
+struct weighted_datum {
  public:
-  MSGPACK_DEFINE(weight, data);
+  MSGPACK_DEFINE(weight, point);
   double weight;
-  jubatus::client::common::datum data;
-  cluster_datum() {
+  jubatus::client::common::datum point;
+  weighted_datum() {
   }
-  cluster_datum(double weight, const jubatus::client::common::datum& data)
-    : weight(weight), data(data) {
+  weighted_datum(double weight, const jubatus::client::common::datum& point)
+    : weight(weight), point(point) {
   }
 };
 

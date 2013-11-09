@@ -17,9 +17,10 @@
 %include "../../core/fv_converter/datum.hpp"
 %include "../../core/cluster_analysis/cluster_analysis_types.hpp"
 
-message cluster_datum("std::pair<double, jubatus::core::fv_converter::datum>") {
+
+message weighted_datum("std::pair<double, jubatus::core::fv_converter::datum>") {
   0: double weight
-  1: datum data
+  1: datum point
 }
 
 message cluster_relation("jubatus::core::cluster_analysis::cluster_relation") {
@@ -36,7 +37,7 @@ message change_graph("jubatus::core::cluster_analysis::change_graph") {
 
 message clustering_snapshot("jubatus::core::cluster_analysis::clustering_snapshot") {
   0: string name
-  1: list<list<cluster_datum> > clusters
+  1: list<list<weighted_datum> > clusters
 }
 
 service cluster_analysis {
