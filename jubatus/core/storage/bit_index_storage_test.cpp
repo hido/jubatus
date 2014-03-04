@@ -42,6 +42,26 @@ bit_vector make_vector(const string& b) {
   return v;
 }
 
+TEST(bit_index_storage, get_all_row_ids) {
+  bit_index_storage s;
+  s.set_row("r1", make_vector("0101"));
+  s.set_row("r2", make_vector("1010"));
+  s.set_row("r3", make_vector("1110"));
+  s.set_row("r4", make_vector("1100"));
+  s.remove_row("r4");
+
+  vector<string> ids;
+  s.get_all_row_ids(ids);
+  sort(ids.begin(), ids.end());
+
+  vector<string> expect;
+  expect.push_back("r1");
+  expect.push_back("r2");
+  expect.push_back("r3");
+
+  EXPECT_EQ(expect, ids);
+}
+
 TEST(bit_index_storage, trivial) {
   bit_index_storage s;
   EXPECT_EQ("bit_index_storage", s.name());
